@@ -44,7 +44,7 @@ spec:
       storage: 20Gi
 ```
 
-`storageClassName`: selected from "alicloud-disk-common"(alicloud common disk), "alicloud-disk-efficiency"(alicloud efficiency disk), "alicloud-disk-ssd"(alicloud ssd disk);
+`storageClassName`: selected from "alicloud-disk-common"(alicloud common disk), "alicloud-disk-efficiency"(alicloud efficiency disk), "alicloud-disk-ssd"(alicloud ssd disk), "alicloud-disk-available";
 
 `accessModes`: support "ReadWriteOnce" for alicloud disk;
 
