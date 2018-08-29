@@ -1,0 +1,28 @@
+package: github.com/AliyunContainerService/alicloud-storage-provisioner
+import:
+- package: github.com/Sirupsen/logrus
+- package: github.com/denverdino/aliyungo
+  subpackages:
+  - common
+  - ecs
+  - metadata
+- package: github.com/kubernetes-incubator/external-storage
+  subpackages:
+  - lib/controller
+- package: k8s.io/api
+  subpackages:
+  - core/v1
+- package: k8s.io/apimachinery
+  subpackages:
+  - pkg/api/resource
+  - pkg/apis/meta/v1
+  - pkg/util/wait
+- package: k8s.io/client-go
+  subpackages:
+  - kubernetes
+  - rest
+  - tools/clientcmd
+- package: k8s.io/kubernetes
+  subpackages:
+  - pkg/volume
+  - pkg/volume/util/volumehelper

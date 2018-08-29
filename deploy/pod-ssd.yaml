@@ -1,0 +1,29 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: disk-ssd
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: alicloud-disk-ssd
+  resources:
+    requests:
+      storage: 20Gi
+
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: disk-pod-ssd
+spec:
+  containers:
+  - name: disk-pod
+    image: nginx
+    volumeMounts:
+      - name: disk-pvc
+        mountPath: "/mnt"
+  restartPolicy: "Never"
+  volumes:
+    - name: disk-pvc
+      persistentVolumeClaim:
+        claimName: disk-ssd
