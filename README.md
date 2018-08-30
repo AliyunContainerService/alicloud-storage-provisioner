@@ -1,5 +1,9 @@
 # 阿里云盘 volume provision controller
 
+[![Build Status](https://travis-ci.org/AliyunContainerService/alicloud-storage-provisioner.svg?branch=master)](https://travis-ci.org/AliyunContainerService/alicloud-storage-provisioner)
+[![CircleCI](https://circleci.com/gh/AliyunContainerService/alicloud-storage-provisioner.svg?style=svg)](https://circleci.com/gh/AliyunContainerService/alicloud-storage-provisioner)
+[![Go Report Card](https://goreportcard.com/badge/github.com/AliyunContainerService/alicloud-storage-provisioner)](https://goreportcard.com/report/github.com/AliyunContainerService/alicloud-storage-provisioner)
+
 Dynamic volume provisioning allows storage volumes to be created on-demand.
 
 # Deployment
