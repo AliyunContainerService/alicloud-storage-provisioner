@@ -8,5 +8,5 @@ sudo: false
 install:
   - true
 script:
-  - cd build && sh build.sh
+  - sh build/build.sh
   - go test ./...
