@@ -7,4 +7,4 @@ jobs:
     steps:
     - checkout
     - run: go test ./...
-    - run: go build
+    - run: cd build && sh build.sh
