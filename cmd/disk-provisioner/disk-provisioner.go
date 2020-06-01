@@ -149,6 +149,13 @@ func (p *diskProvisioner) createVolume(options controller.VolumeOptions) (string
 		Encrypted:    encrypted,
 	}
 
+        // create from aliyun disk snapshot by setting snapshot ID
+        if snapshotId, ok := options.PVC.Annotations["provider.disksnapshot.aliyuncs.com/disk-snapshot-id"]; ok {
+                volumeOptions.SnapshotId = snapshotId
+                createBy = "DiskSnapshotId-" + snapshotId
+                log.Infof("Create Disk from Aliyun Disk SnapshotID: %s", snapshotId)
+        }
+
 	// Step 5: Create Disk
 	volumeId, err := p.EcsClient.CreateDisk(volumeOptions)
 	if err != nil {
