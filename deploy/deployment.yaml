@@ -1,38 +1,47 @@
----
 kind: StorageClass
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 metadata:
-  name: alicloud-disk-common
+  name: alicloud-disk-essd
 provisioner: alicloud/disk
 parameters:
-  type: cloud
-
+  type: cloud_essd
+allowVolumeExpansion: true
 ---
 kind: StorageClass
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 metadata:
   name: alicloud-disk-efficiency
 provisioner: alicloud/disk
 parameters:
   type: cloud_efficiency
-
+allowVolumeExpansion: true
 ---
 kind: StorageClass
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 metadata:
   name: alicloud-disk-ssd
 provisioner: alicloud/disk
 parameters:
   type: cloud_ssd
-
+allowVolumeExpansion: true
 ---
 kind: StorageClass
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 metadata:
   name: alicloud-disk-available
 provisioner: alicloud/disk
 parameters:
   type: available
+allowVolumeExpansion: true
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: alicloud-disk-topology
+provisioner: alicloud/disk
+parameters:
+  type: cloud_ssd
+volumeBindingMode: WaitForFirstConsumer
 
 ---
 kind: ClusterRole
@@ -100,14 +109,10 @@ spec:
         app: alicloud-disk-controller
     spec:
       tolerations:
-      - effect: NoSchedule
-        operator: Exists
-        key: node-role.kubernetes.io/master
-      - effect: NoSchedule
-        operator: Exists
-        key: node.cloudprovider.kubernetes.io/uninitialized
+      - operator: Exists
+      priorityClassName: system-node-critical
       nodeSelector:
-         node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       serviceAccount: alicloud-disk-controller
       containers:
         - name: alicloud-disk-controller
